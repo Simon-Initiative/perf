@@ -14,16 +14,16 @@ defmodule Perf.Scenarios.Utils do
   For each page it sequentially requests all available hints for all activities present in the page,
   with a random delay in between each hint request.
   """
-  def exercise_all_pages(session, with_result, exercises, delay \\ 3) do
-    case session.assigned.pages do
+  def exercise_pages(session, with_result, exercises, assigned_queue \\ :pages, delay \\ 3) do
+    case session.assigned[assigned_queue] do
       [] ->
         session
 
       [next | remaining] ->
         session
-        |> assign(pages: remaining)
+        |> assign(Keyword.new() |> Keyword.put(assigned_queue, remaining))
         |> delay({:random, delay |> seconds})
-        |> get(next,
+        |> get(next["url"],
           headers: %{"accept" => "text/html", "content-type" => "text/html"},
           decode: fn response ->
             {:ok, Perf.Scenarios.Utils.decode_testing_metadata("__ACTIVITY_ATTEMPTS__", response)}
@@ -32,17 +32,27 @@ defmodule Perf.Scenarios.Utils do
           metrics_url: "/page"
         )
         |> exercises.()
-        |> exercise_all_pages(with_result, exercises, delay)
+        |> exercise_pages(with_result, exercises, assigned_queue, delay)
     end
   end
 
+  def seed_queue_from(session, source, destination, filter_fn \\ fn _ -> true end) do
+    results = Enum.filter(session.assigned[source], filter_fn)
+    assign(session, Keyword.new() |> Keyword.put(destination, results))
+  end
+
+  @spec exhaust_all_hints(
+          atom | %{:assigned => nil | maybe_improper_list | map, optional(any) => any},
+          any,
+          any
+        ) :: atom | %{:assigned => nil | maybe_improper_list | map, optional(any) => any}
   @doc """
   Exhaust all hints for all activities in a page, sequentially. This works via the "hints"
   assign serving as a work queue. This function will get called recursively to process items
   from that queue.
   """
-  def exhaust_all_hints(session, delay \\ 3) do
-    case session.assigned.hints do
+  def exhaust_all_hints(session, assigned_queue \\ :hints, delay \\ 3) do
+    case session.assigned[assigned_queue] do
       [] ->
         session
 
@@ -58,13 +68,13 @@ defmodule Perf.Scenarios.Utils do
             else
               # No more hints for this part, so update the assign in a way that pops it
               # off of the queue.
-              assign(s, hints: rest)
+              assign(s, Keyword.new() |> Keyword.put(assigned_queue, rest))
             end
           end,
           metrics_url: "/hint"
         )
         |> delay({:random, delay |> seconds})
-        |> exhaust_all_hints()
+        |> exhaust_all_hints(assigned_queue, delay)
     end
   end
 
@@ -128,20 +138,20 @@ defmodule Perf.Scenarios.Utils do
     |> assign(section: Enum.random(result))
   end
 
-  def submit_all_activities(session, delay \\ 3) do
-    case session.assigned.attempts do
+  def submit_all_activities(session, assigned_queue \\ :attempts, delay \\ 3) do
+    case session.assigned[assigned_queue] do
       [] ->
         session
 
       [next | rest] ->
         case length(Map.get(next, "answers") |> Map.keys()) do
           0 ->
-            assign(session, attempts: rest)
-            |> submit_all_activities()
+            assign(session, Keyword.new() |> Keyword.put(assigned_queue, rest))
+            |> submit_all_activities(assigned_queue, delay)
 
           _ ->
             delay(session, {:random, delay |> seconds})
-            |> assign(attempts: rest)
+            |> assign(Keyword.new() |> Keyword.put(assigned_queue, rest))
             |> put(
               "/api/v1/state/course/#{session.assigned.section.slug}/activity_attempt/#{
                 next["attemptGuid"]
@@ -157,7 +167,7 @@ defmodule Perf.Scenarios.Utils do
                   end)
               }
             )
-            |> submit_all_activities()
+            |> submit_all_activities(assigned_queue, delay)
         end
     end
   end

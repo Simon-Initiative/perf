@@ -5,7 +5,7 @@ defmodule Perf.Scenarios.VisitAllPages do
 
   @moduledoc """
   A scenario that will pick a random available open and free section, login, and then
-  visit every page in the course outline. For each page it requests every hint available for
+  visit every practice page in the course outline. For each page it requests every hint available for
   every activity on the page and finally submits an answer for every activity.
   """
 
@@ -19,14 +19,16 @@ defmodule Perf.Scenarios.VisitAllPages do
     |> pick_random_section()
     |> login()
     |> visit_overview()
-    |> exercise_all_pages(
+    |> seed_queue_from(:pages, :practice_pages, fn p -> !p["graded"] end)
+    |> exercise_pages(
       fn s, attempts ->
         assign(s, attempts: attempts, hints: seed_hints(s.assigned.section.slug, attempts))
       end,
       fn session ->
         exhaust_all_hints(session)
         |> submit_all_activities()
-      end
+      end,
+      :practice_pages
     )
   end
 end
