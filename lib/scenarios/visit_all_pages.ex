@@ -35,10 +35,9 @@ defmodule Perf.Scenarios.VisitAllPages do
   """
   def login(session) do
     session
-    |> post("/course/users",
+    |> post("/sections/#{session.assigned.section.slug}/create_user",
       headers: %{"accept" => "text/html"},
       json: %{
-        "user_details" => %{"redirect_to" => session.assigned.section.url},
         "g-recaptcha-response" => ""
       }
     )
