@@ -83,6 +83,7 @@ defmodule Perf.Scenarios.VisitAllPages do
           metrics_url: "/page"
         )
         |> exhaust_all_hints()
+        |> submit_all_activities()
         |> exercise_all_pages()
     end
   end
@@ -115,6 +116,41 @@ defmodule Perf.Scenarios.VisitAllPages do
           metrics_url: "/hint"
         )
         |> delay({:random, 3 |> seconds})
+        |> exhaust_all_hints()
+    end
+  end
+
+  def submit_all_activities(session) do
+    case session.assigned.attempts do
+      [] ->
+        session
+
+      [next | rest] ->
+        case length(Map.get(next, "answers") |> Map.keys()) do
+          0 ->
+            assign(session, attempts: rest)
+            |> submit_all_activities()
+
+          _ ->
+            delay(session, {:random, 3 |> seconds})
+            |> assign(attempts: rest)
+            |> put(
+              "/api/v1/state/course/#{session.assigned.section.slug}/activity_attempt/#{
+                next["attemptGuid"]
+              }",
+              metrics_url: "/submission",
+              json: %{
+                "partInputs" =>
+                  Enum.map(next["parts"], fn p ->
+                    %{
+                      "attemptGuid" => p["attemptGuid"],
+                      "response" => next["answers"][p["partId"]]
+                    }
+                  end)
+              }
+            )
+            |> submit_all_activities()
+        end
         |> exhaust_all_hints()
     end
   end
