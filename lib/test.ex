@@ -14,6 +14,8 @@ defmodule Perf.LoadTest.Production do
 
   def scenarios,
     do: [
-      {{1, Perf.Scenarios.VisitAllPages}, %{}}
+      {{1, Perf.Scenarios.TakeAssessment},
+       %{section_slug: "example_course", page_slug: "quiz", num_attempts: 10}}
+      #   {{1, Perf.Scenarios.VisitAllPages}, %{}}
     ]
 end
