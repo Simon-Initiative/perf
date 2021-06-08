@@ -14,8 +14,6 @@ defmodule Perf.LoadTest.Production do
 
   def scenarios,
     do: [
-      {{1, Perf.Scenarios.TakeAssessment},
-       %{section_slug: "kth_cs101", page_slug: "security_quiz", num_attempts: 5}},
-      {{100, Perf.Scenarios.VisitAllPages}, %{iterations: 1}}
+      {{50, Perf.Scenarios.VisitAllPages}, %{iterations: 1}}
     ]
 end
