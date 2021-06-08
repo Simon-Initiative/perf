@@ -8,7 +8,7 @@ defmodule Perf.LoadTest.Production do
       http: %{
         # additional http (hackney request) parameters, if needed
         ssl: [{:versions, [:"tlsv1.2"]}],
-        recv_timeout: 1000
+        recv_timeout: 10000
       }
     }
 
