@@ -12,6 +12,6 @@ defmodule Perf do
 
   """
   def go do
-    Chaperon.run_load_test(Perf.LoadTest.Production, print_results: false)
+    Chaperon.run_load_test(Perf.LoadTest.Production, print_results: true)
   end
 end
