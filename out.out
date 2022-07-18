@@ -1,0 +1,123 @@
+
+15:23:15.777 [info]  5d680091-057e-4837-9eb6-b061bbf74674 Perf.Scenarios.VisitAllPages | Starting 
+
+15:23:15.805 [info]  5d680091-057e-4837-9eb6-b061bbf74674 Perf.Scenarios.VisitAllPages | GET https://localhost//api/v1/testing/openfree 
+
+15:23:15.865 [warn]  Description: 'Authenticity is not established by certificate path validation'
+     Reason: 'Option {verify, verify_peer} and cacertfile/cacerts is missing'
+
+
+15:23:16.181 [debug] 5d680091-057e-4837-9eb6-b061bbf74674 Perf.Scenarios.VisitAllPages | Add metric {:get, "https://localhost//api/v1/testing/openfree"} : 369 
+
+15:23:16.182 [debug] 5d680091-057e-4837-9eb6-b061bbf74674 Perf.Scenarios.VisitAllPages | Add metric {{:error, {:http, 404}}, {:get, "https://localhost//api/v1/testing/openfree"}} : 369 
+
+15:23:16.183 [warn]  5d680091-057e-4837-9eb6-b061bbf74674 Perf.Scenarios.VisitAllPages | HTTP Response GET /api/v1/testing/openfree failed with status code: 404 
+
+15:23:16.183 [warn]  5d680091-057e-4837-9eb6-b061bbf74674 Perf.Scenarios.VisitAllPages | <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Phoenix.Router.NoRouteError at GET //api/v1/testing/openfree</title>
+    <meta name="viewport" content="width=device-width">
+    <style>/*! normalize.css v4.2.0 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}template,[hidden]{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:bold}button,input{overflow:visible}button,select{text-transform:none}button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-cancel-button,[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:0.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}</style>
+    <style>
+    html, body, td, input {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 15px;
+        line-height: 1.6;
+        background: #fff;
+        color: #203040;
+    }
+
+    @media (max-width: 768px) {
+        html {
+             font-size: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        html {
+             font-size: 13px;
+        }
+    }
+
+    button:focus,
+    summary:focus {
+        outline: 0;
+    }
+
+    summary {
+        cursor: pointer;
+    }
+
+    pre {
+        font-family: menlo, consolas, monospace;
+        overflow: auto;
+        max-width: 100%;
+    }
+
+    .top-details {
+        padding: 48px;
+        background: #f9f9fa;
+    }
+
+    .top-details,
+    .conn-info {
+        padding: 48px;
+    }
+
+
+    @media (max-width: 768px) {
+        .top-details,
+        .conn-info {
+            padding: 32px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .top-details,
+        .conn-info {
+            padding: 16px;
+        }
+    }
+
+    /*
+     * Exception logo
+     */
+
+    
+    .exception-logo {
+        position: absolute;
+        right: 48px;
+        top: 48px;
+        pointer-events: none;
+        width: 100%;
+    }
+
+    .exception-logo:before {
+        content: '';
+        display: block;
+        height: 64px;
+        width: 100%;
+        background-size: auto 100%;
+        background-image: url("data:image/png;base64,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 (truncated)
+
+15:23:16.186 [error] Task #PID<0.298.0> started from #PID<0.297.0> terminating
+** (Protocol.UndefinedError) protocol Enumerable not implemented for {:error, %HTTPoison.Response{body: "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\">\n    <title>Phoenix.Router.NoRouteError at GET //api/v1/testing/openfree</title>\n    <meta name=\"viewport\" content=\"width=device-width\">\n    <style>/*! normalize.css v4.2.0 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}template,[hidden]{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:bold}button,input{overflow:visible}button,select{text-transform:none}button,html [type=\"button\"],[type=\"reset\"],[type=\"submit\"]{-webkit-appearance:button}button::-moz-focus-inner,[type=\"button\"]::-moz-focus-inner,[type=\"reset\"]::-moz-focus-inner,[type=\"submit\"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type=\"button\"]:-moz-focusring,[type=\"reset\"]:-moz-focusring,[type=\"submit\"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=\"checkbox\"],[type=\"radio\"]{box-sizing:border-box;padding:0}[type=\"number\"]::-webkit-inner-spin-button,[type=\"number\"]::-webkit-outer-spin-button{height:auto}[type=\"search\"]{-webkit-appearance:textfield;outline-offset:-2px}[type=\"search\"]::-webkit-search-cancel-button,[type=\"search\"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:0.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}</style>\n    <style>\n    html, body, td, input {\n        font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n    }\n\n    * {\n        box-sizing: border-box;\n    }\n\n    html {\n        font-size: 15px;\n        line-height: 1.6;\n        background: #fff;\n        color: #203040;\n    }\n\n    @media (max-width: 768px) {\n        html {\n             font-size: 14px;\n        }\n    }\n\n    @media (max-width: 480px) {\n        html {\n             font-size: 13px;\n        }\n    }\n\n    button:focus,\n    summary:focus {\n        outline: 0;\n    }\n\n    summary {\n        cursor: pointer;\n    }\n\n    pre {\n        font-family: menlo, consolas, monospace;\n        overflow: auto;\n        max-width: 100%;\n    }\n\n    .top-details {\n        padding: 48px;\n        background: #f9f9fa;\n    }\n\n    .top-details,\n    .conn-info {\n        padding: 48px;\n    }\n\n\n    @media (max-width: 768px) {\n        .top-details,\n        .conn-info {\n            padding: 32px;\n        }\n    }\n\n    @media (max-width: 480px) {\n        .top-details,\n        .conn-info {\n            padding: 16px;\n        }\n    }\n\n    /*\n     * Exception logo\n     */\n\n    \n    .exception-logo {\n        position: absolute;\n        right: 48px;\n        top: 48px;\n        pointer-events: none;\n        width: 100%;\n    }\n\n    .exception-logo:before {\n        content: '';\n        display: block;\n        height: 64px;\n        width: 100%;\n        background-size: auto 100%;\n        background-image: url(\"data:image/png;base64,iVBORw0" <> ..., headers: [{"cache-control", "max-age=0, private, must-revalidate"}, {"content-length", "121253"}, {"content-type", "text/html; charset=utf-8"}, {"date", "Tue, 11 Jan 2022 20:23:16 GMT"}, {"server", "Cowboy"}], request: %HTTPoison.Request{body: "", headers: [{"Accept", "*/*"}, {"User-Agent", "chaperon"}], method: :get, options: [recv_timeout: 10000, ssl: [versions: [:"tlsv1.2"]], params: %{}, hackney: [pool: :chaperon]], params: %{}, url: "https://localhost//api/v1/testing/openfree"}, request_url: "https://localhost//api/v1/testing/openfree", status_code: 404}} of type Tuple. This protocol is implemented for the following type(s): EQ, Histogrex.Iterator, HashSet, Range, Map, Function, List, Stream, Date.Range, HashDict, GenEvent.Stream, MapSet, File.Stream, IO.Stream
+    (elixir 1.12.0) lib/enum.ex:1: Enumerable.impl_for!/1
+    (elixir 1.12.0) lib/enum.ex:197: Enumerable.slice/1
+    (elixir 1.12.0) lib/enum.ex:2251: Enum.random/1
+    (perf 0.1.0) lib/scenarios/utils.ex:203: anonymous fn/3 in Perf.Scenarios.Utils.pick_section/2
+    (chaperon 0.3.1) lib/chaperon/action/http.ex:290: Chaperon.Actionable.Chaperon.Action.HTTP.run/2
+    (chaperon 0.3.1) lib/chaperon/session.ex:648: Chaperon.Session.run_action/2
+    (perf 0.1.0) lib/scenarios/visit_all_pages.ex:21: Perf.Scenarios.VisitAllPages.run/1
+    (chaperon 0.3.1) lib/chaperon/scenario.ex:198: Chaperon.Scenario.with_scenario/3
+Function: &Chaperon.Scenario.execute/2
+    Args: [Perf.Scenarios.VisitAllPages, %{base_url: "https://localhost/", http: %{recv_timeout: 10000, ssl: [versions: [:"tlsv1.2"]]}, iterations: 1, metrics: nil}]

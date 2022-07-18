@@ -176,9 +176,7 @@ defmodule Perf.Scenarios.Utils do
         Enum.reduce(activity_attempt["parts"], [], fn p, all ->
           if p["hasMoreHints"] do
             [
-              "/api/v1/state/course/#{session.assigned.section.slug}/activity_attempt/#{
-                activity_attempt["attemptGuid"]
-              }/part_attempt/#{p["attemptGuid"]}/hint"
+              "/api/v1/state/course/#{session.assigned.section.slug}/activity_attempt/#{activity_attempt["attemptGuid"]}/part_attempt/#{p["attemptGuid"]}/hint"
               | all
             ]
           else
@@ -216,7 +214,7 @@ defmodule Perf.Scenarios.Utils do
   """
   def login(session) do
     session
-    |> post("/sections/#{session.assigned.section.slug}/create_user",
+    |> post("/sections/#{session.assigned.section.slug}/enroll",
       headers: %{"accept" => "text/html"},
       json: %{
         "g-recaptcha-response" => ""
@@ -253,9 +251,7 @@ defmodule Perf.Scenarios.Utils do
       _ ->
         session
         |> put(
-          "/api/v1/state/course/#{session.assigned.section.slug}/activity_attempt/#{
-            activity_attempt["attemptGuid"]
-          }",
+          "/api/v1/state/course/#{session.assigned.section.slug}/activity_attempt/#{activity_attempt["attemptGuid"]}",
           metrics_url: "/submission",
           json: %{
             "partInputs" =>
